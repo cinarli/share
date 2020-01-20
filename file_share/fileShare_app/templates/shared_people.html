@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<div class="canSeeUsers">
+    <h2>Faylı görə bilənlər</h2><br>
+    <a href="{% url 'empty:file' fileId %}">Fayla qayıt</a><br>
+    <a href="{% url 'empty:home' %}">Ana səhifə</a><br>
+
+    {% for person in people %}
+              
+            {% if request.user != person %}
+            <div class="single_users"> 
+            <p class="person">{{person}}</p>
+            
+            
+             <a href="#" class='deleteperson' data-personid='{{person.id}}'>sil</a>
+</div>
+        {% endif %}
+     
+ 
+    {% endfor %}
+</div>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+   <script> 
+   $('.deleteperson').on('click', function(e){
+            e.preventDefault()
+            var users=$(this)
+            var person = users.data('personid')
+            var parentDiv=users.closest('div')
+            $.ajax({
+                url: '{% url "empty:delsharedpeople" %}',
+                method:'GET',
+                data:{
+                    'fileid':'{{fileId}}',
+                    'userid': person
+                },
+                success:function(data){
+                    parentDiv.html('')
+                },
+                error:function(data){
+                    console.log(data);
+                    
+                }
+            })
+        })
+   </script>
+</body>
+</html>

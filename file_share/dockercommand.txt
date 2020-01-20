@@ -1,0 +1,41 @@
+sudo docker build . : [create docker]
+sudo docker images: [view docker]
+sudo docker run -d -p 8888:8889[portdur] images-idsi    [run container]
+sudo docker start container-idsi     [start container]
+sudo docker stop container-idsi     [stop container]
+sudo docker rm container idsi    [just delete stop container]
+sudo docker rm -f container idsi    [stop and delete container]
+sudo docker rmi  image-idsi               [delete image]
+sudo docker ps [you can view working container]
+sudo docker ps -a [you can view all container]
+-------------------
+sudo apt install docker-compose [download compose]
+sudo docker-compose --version [view compose version]
+sudo docker-compose.yml [create compose yml file]
+sudo docker-compose up -d [Run compose]
+sudo docker exec -it idcontainer bash   
+------------------------------------
+sudo apt install mysql-client
+ mysql-h127.0.0.01 -P3307 -uroot -p123456
+
+#show virtualenv location 
+which virtualenv
+
+#show python location
+which python3
+
+#create virtualenv
+virtualenv -p /usr/bin/python3 .venv
+
+pip freeze > requirements.txt
+pip install -r requirements.txt
+
+
+celery run: 'celery worker -A proj_name --loglevel=info' or 
+'celery -A proj_name worker -B -l INFO'   <--bu
+
+celery restart: sudo service redis-server restart
+
+
+redisi dayandirmaq ucun
+sudo /etc/init.d/redis-server stop
